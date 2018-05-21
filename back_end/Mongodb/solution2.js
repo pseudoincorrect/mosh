@@ -15,9 +15,11 @@ const Course = mongoose.model('Course', courseSchema);
 
 async function getCourses() {
   return await Course
-  .find({tags: {$in: "backend"} , isPublished: true})
-  .sort({name: "ascending"})
-  .select({name: 1, author: 1})
+  .find()
+  .or({tags: {$in: ["backend", "frontend"]}})
+  .and({isPublished: true})
+  .sort({price: "descending"})
+  .select({name: 1, author: 1, price: 1})
   .catch(err => console.log('Error', err.message));
 }
 
@@ -29,10 +31,13 @@ async function run() {
   for (let i = 0; i < courses.length; i++) {
     console.log("name: ", courses[i].name);
     console.log("author: ", courses[i].author);
+    console.log("price: ", courses[i].price);
     console.log(" ");  
   }
 
-  mongoose.disconnect()
+    // console.log(courses);
+    
+    mongoose.disconnect()
 }
 
 run();
