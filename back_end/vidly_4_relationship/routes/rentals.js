@@ -1,13 +1,13 @@
 const {Rental, validate} = require('../models/rental');
-const {Movie, movieSchema} = require('../models/movie');
-const {Customer, customerSchema} = require('../models/customer');
+const {Movie} = require('../models/movie');
+const {Customer} = require('../models/customer');
 const mongoose = require('mongoose');
 const express = require('express');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const rental = await Rental.find().sort('title');
+  const rental = await Rental.find().sort('-startDate');
   res.send(rental);
 });
 
@@ -29,18 +29,25 @@ router.post('/', async (req, res) => {
   if (!customer) return res.status(400).send('invalid customer');
   
   let rental = new Rental({ 
-    movie: {
-      _id: movie._id,
-      name: movie.name
-    },
     customer: {
       _id: customer._id,
-      name: customer.name
+      name: customer.name,
+      isGold: customer.isGold,
+      phone: customer.phone
+    },
+    movie: {
+      _id: movie._id,
+      title: movie.title,
+      dailyRentalRate: movie.dailyRentalRate
     },
     startDate: Date.now()
   });
 
   rental = await rental.save();
+
+  movie.numberInStock--;
+  movie.movie.save();
+  
   res.send(rental);
 });
 
