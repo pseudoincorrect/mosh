@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
-const genres = require('./routes/genres');
-const customers = require('./routes/customers');
 const express = require('express');
 const app = express();
+// routes
+const genres    = require('./routes/genre');
+const customers = require('./routes/customer');
+const movies    = require('./routes/movie');
 
 mongoose.connect('mongodb://localhost/vidly')
   .then(() => console.log('Connected to MongoDB...'))
@@ -11,6 +13,7 @@ mongoose.connect('mongodb://localhost/vidly')
 app.use(express.json());
 app.use('/api/genres', genres);
 app.use('/api/customers', customers);
+app.use('/api/movies', movies);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

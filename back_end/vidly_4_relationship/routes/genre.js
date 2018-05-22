@@ -48,3 +48,13 @@ router.get('/:id', async (req, res) => {
 });
 
 module.exports = router;
+
+
+// example of POST 
+/*
+http://localhost:3000/api/genres
+
+{
+	"name": "horror"
+}
+*/
