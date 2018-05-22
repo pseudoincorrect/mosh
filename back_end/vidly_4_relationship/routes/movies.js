@@ -11,15 +11,11 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
 
-  console.log(req.body);
-  
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
 
-  const genre = await Genre.find({_id: req.body.genre_id});
+  const genre = await Genre.findById(req.body.genreId);
   if (!genre) return res.status(400).send('invalid genre');
-  
-  console.log(genre);
   
   let movie = new Movie({ 
     title : req.body.title,
@@ -27,12 +23,11 @@ router.post('/', async (req, res) => {
       _id: genre._id,
       name: genre.name
     },
-    numberInStoc: req.body.numberInStock,
+    numberInStock: req.body.numberInStock,
     dailyRentalRate: req.body.dailyRentalRate
   });
 
   movie = await movie.save();
-  
   res.send(movie);
 });
 
@@ -40,9 +35,19 @@ router.put('/:id', async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
 
-  const movie = await Movie.findByIdAndUpdate(req.params.id, { name: req.body.name }, {
-    new: true
-  });
+  const genre = await Genre.findById(req.body.genreId);
+  if (!genre) return res.status(400).send('Invalid genre.');
+
+  const movie = await Movie.findByIdAndUpdate(req.params.id,
+    { 
+      title: req.body.title,
+      genre: {
+        _id: genre._id,
+        name: genre.name
+      },
+      numberInStock: req.body.numberInStock,
+      dailyRentalRate: req.body.dailyRentalRate
+    }, { new: true });
 
   if (!movie) return res.status(404).send('The movie with the given ID was not found.');
   
@@ -65,15 +70,15 @@ router.get('/:id', async (req, res) => {
   res.send(movie);
 });
 
-module.exports = router;
+module.exports = router; 
 
-// example of POST 
 /*
-http://localhost:3000/api/movies
+POST, GET at http://localhost:3000/api/movies
+PUT, GET, DELETE at http://localhost:3000/api/movies/:id
 
 {
   "title": "scary movie",
-  "genre_id": "5b0409442cb4e04bb40464a9",
+  "genreId": "5b0409442cb4e04bb40464a9",
   "numberInStock": "21",
   "dailyRentalRate": "3"
 }

@@ -13,14 +13,24 @@ const Movie = mongoose.model('Movie', new mongoose.Schema({
         type: genreSchema,
         required: true
     },
-    numberInStock: Number,
-    dailyRentalRate: Number
+    numberInStock: { 
+        type: Number, 
+        required: true,
+        min: 0,
+        max: 255
+    },
+    dailyRentalRate: { 
+        type: Number, 
+        required: true,
+        min: 0,
+        max: 255
+    }
 }));
 
 function validateMovie(genre) {
   const schema = {
     title: Joi.string().min(3).required(),
-    genre_id: Joi.string().min(3).required(),
+    genreId: Joi.string().min(3).required(),
     numberInStock: Joi.number(),
     dailyRentalRate: Joi.number()
 

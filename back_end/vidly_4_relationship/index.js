@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 // routes
-const genres    = require('./routes/genre');
-const customers = require('./routes/customer');
-const movies    = require('./routes/movie');
+const genres    = require('./routes/genres');
+const customers = require('./routes/customers');
+const movies    = require('./routes/movies');
 
 mongoose.connect('mongodb://localhost/vidly')
   .then(() => console.log('Connected to MongoDB...'))
