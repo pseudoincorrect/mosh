@@ -1,4 +1,6 @@
 const Joi = require('joi');
+const config = require('config');
+const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -28,12 +30,21 @@ userSchema.path('email').validate(function (email) {
     return emailRegex.test(email);
 }, 'incorrect email address format');
 
+userSchema.methods.generateAuthToken = function () {
+    const token = jwt.sign(
+        {_id: this._id}, config.get('jwtPrivateKey'));
+    return token;
+}
+
 const User = mongoose.model('User', userSchema);
 
 function validateUser(genre) {
   const schema = {
     name: Joi.string().min(3).max(50).required(),
-    email: Joi.string().regex(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/).required(),
+    email: Joi
+        .string()
+        .regex(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)
+        .required(),
     password: Joi.string().min(3).max(50).required()
   };
   return Joi.validate(genre, schema);

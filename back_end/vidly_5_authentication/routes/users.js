@@ -13,7 +13,8 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const user = await User.findById(req.params.id);
 
-  if (!user) return res.status(404).send('The user with the given ID was not found.');
+  if (!user) return res.status(404).send(
+          'The user with the given ID was not found.');
 
   res.send(user);
 });
@@ -32,10 +33,11 @@ router.post('/', async (req, res) => {
 
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password,salt);
-
   await user.save();
 
-  res.send(_.pick(user, ['name', 'email']));
+  const token = user.generateAuthToken();
+  res.header('x-auth-token', token).send(
+                  _.pick(user, ['id','name', 'email']));
 });
 
 module.exports = router; 
