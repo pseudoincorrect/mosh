@@ -39,22 +39,17 @@ userSchema.methods.generateAuthToken = function () {
 
 const User = mongoose.model('User', userSchema);
 
-function validateUser(user) {
+function validateUser(genre) {
   const schema = {
     name: Joi.string().min(3).max(50).required(),
-<<<<<<< HEAD
-    email: Joi.string().regex(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/).required(),
-    password: Joi.string().min(3).max(50).required()
-=======
     email: Joi
         .string()
         .regex(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)
         .required(),
     password: Joi.string().min(3).max(50).required(),
     isAdmin: Joi.boolean()
->>>>>>> 172d0cf941f7a54cdacbeae2efa25e2ae220acb7
   };
-  return Joi.validate(user, schema);
+  return Joi.validate(genre, schema);
 }
 
 exports.User = User; 

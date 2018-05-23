@@ -20,6 +20,7 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+
   const { error } = validate(req.body); 
   if(error) console.log(error);
   
@@ -42,10 +43,12 @@ router.post('/', async (req, res) => {
 module.exports = router; 
 
 /*
-example of POST at http://localhost:3000/api/users
+POST, GET at http://localhost:3000/api/users
+PUT, GET, DELETE at http://localhost:3000/api/users/:id
+
 {
-  "name": "Tommy",
-  "email": "name@domain.com",
-  "password": "idontlikepasswords"
+  "name": "Thomas Fernadez",
+  "email": "email@domain.com",
+  "password": "ThisAClearPassword"
 }
 */
