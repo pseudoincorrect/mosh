@@ -18,12 +18,12 @@ const userSchema = new mongoose.Schema({
     password: { 
         type: String,
         minlength: 5,
-        maxlength: 50,
+        maxlength: 1024,
         required: true
     }
 });
 
-userSchema.path('phone').validate(function (email) {
+userSchema.path('email').validate(function (email) {
     var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     return emailRegex.test(email);
 }, 'incorrect email address format');
@@ -34,7 +34,7 @@ function validateUser(genre) {
   const schema = {
     name: Joi.string().min(3).max(50).required(),
     email: Joi.string().regex(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/).required(),
-    password: Joi.tring().min(3).max(50).required()
+    password: Joi.string().min(3).max(50).required()
   };
   return Joi.validate(genre, schema);
 }
