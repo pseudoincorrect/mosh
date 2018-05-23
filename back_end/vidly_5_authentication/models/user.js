@@ -23,20 +23,20 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-userSchema.path('phone').validate(function (email) {
+userSchema.path('email').validate(function (email) {
     var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     return emailRegex.test(email);
 }, 'incorrect email address format');
 
 const User = mongoose.model('User', userSchema);
 
-function validateUser(genre) {
+function validateUser(user) {
   const schema = {
     name: Joi.string().min(3).max(50).required(),
     email: Joi.string().regex(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/).required(),
-    password: Joi.tring().min(3).max(50).required()
+    password: Joi.string().min(3).max(50).required()
   };
-  return Joi.validate(genre, schema);
+  return Joi.validate(user, schema);
 }
 
 exports.User = User; 

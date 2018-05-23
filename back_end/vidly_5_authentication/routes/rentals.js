@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
   const customer = await Customer.findById(req.body.customerId);
   if (!customer) return res.status(400).send('invalid customer');
   
-  let rental = new Rental({ 
+  const rental = new Rental({ 
     customer: {
       _id: customer._id,
       name: customer.name,
