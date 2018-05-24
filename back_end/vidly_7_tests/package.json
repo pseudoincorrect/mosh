@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "autotest": "jest --watchAll",
+    "autotestv": "jest --watchAll --verbose",
     "test": "jest"
   },
   "keywords": [],
