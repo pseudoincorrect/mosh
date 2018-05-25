@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "autotest": "jest --watchAll",
-    "autotestv": "jest --watchAll --verbose",
-    "test": "jest"
+    "autotest": "jest --watchAll --runInBand --coverage",
+    "autotestv": "jest --watchAll --verbose --runInBand",
+    "test": "jest --runInBand"
   },
   "keywords": [],
   "author": "",

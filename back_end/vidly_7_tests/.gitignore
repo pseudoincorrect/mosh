@@ -1,1 +1,4 @@
 node_modules
+coverage
+exception.log
+logfile.com

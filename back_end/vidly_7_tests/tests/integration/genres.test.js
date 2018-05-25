@@ -5,7 +5,7 @@ const {User} = require('../../models/user');
 let server;
 
 describe('/api/genres', () => {
-    beforeEach(() => { server = require('../../index'); })
+    beforeEach(() => { server = require('../../index'); });
     afterEach( async () => { 
         server.close(); 
         await Genre.remove({});
@@ -93,3 +93,12 @@ describe('/api/genres', () => {
         });
     });
 }); 
+
+
+
+
+
+// describe('dummy', () => {
+//     it(`should be a dummy test`, 
+//     async () => { expect(1).toBe(1); });
+// });
