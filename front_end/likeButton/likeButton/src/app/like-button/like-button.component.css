@@ -1,9 +1,13 @@
 table {
-  border-spacing: 10px;
-  border-collapse: separate;
+    border-spacing: 10px;
+    border-collapse: separate;
 }
 
-.material-icons { font-size: 30px; }
+.material-icons {
+    font-size: 30px;
+    color: grey;
+}
 
-.unselected { color: grey; }
-.selected { color: dodgerblue; }
+.material-icons.selected {
+    color: dodgerblue;
+}

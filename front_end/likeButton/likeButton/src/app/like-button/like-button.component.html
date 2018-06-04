@@ -1,6 +1,12 @@
 <table>
-  <tr>
-    <td class="material-icons selected"> thumb_up </td>
-    <td> 23 </td>
-  </tr>
+    <tr>
+        <td
+            class="material-icons"
+            [class.selected]="isSelected"
+            (click)="onClick()"
+            >
+            thumb_up
+        </td>
+        <td> {{ displayNumber }} </td>
+    </tr>
 </table>

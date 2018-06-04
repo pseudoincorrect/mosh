@@ -5,18 +5,21 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LikeButtonComponent } from './like-button/like-button.component';
+import { LikesCountService } from './likes-count.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LikeButtonComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatCheckboxModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LikeButtonComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatCheckboxModule
+    ],
+    providers: [
+        LikesCountService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
