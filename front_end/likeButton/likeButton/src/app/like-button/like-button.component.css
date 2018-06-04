@@ -1,0 +1,9 @@
+table {
+  border-spacing: 10px;
+  border-collapse: separate;
+}
+
+.material-icons { font-size: 30px; }
+
+.unselected { color: grey; }
+.selected { color: dodgerblue; }

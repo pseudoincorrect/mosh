@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthorsComponent } from './authors.component';
+import { LikeButtonComponent } from './like-button.component';
 
-describe('AuthorsComponent', () => {
-  let component: AuthorsComponent;
-  let fixture: ComponentFixture<AuthorsComponent>;
+describe('LikeButtonComponent', () => {
+  let component: LikeButtonComponent;
+  let fixture: ComponentFixture<LikeButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthorsComponent ]
+      declarations: [ LikeButtonComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthorsComponent);
+    fixture = TestBed.createComponent(LikeButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
