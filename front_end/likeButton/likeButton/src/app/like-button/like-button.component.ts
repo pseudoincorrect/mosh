@@ -8,14 +8,13 @@ import { LikesCountService } from '../likes-count.service';
 })
 export class LikeButtonComponent implements OnInit {
 
-    isSelected: boolean;
-    likeNumber: number;
-    displayNumber: number;
+    @Input('isSelected') isSelected: boolean;
+    @Input('likesCount') likesCount: number;
 
     constructor(service: LikesCountService) {
         const likeInfo = service.getInfo();
         this.isSelected = likeInfo.isSel;
-        this.likeNumber = likeInfo.likeNumb;
+        this.likesCount = likeInfo.likeNumb;
     }
 
     ngOnInit() {
@@ -23,8 +22,7 @@ export class LikeButtonComponent implements OnInit {
 
     onClick() {
         this.isSelected = !this.isSelected;
-        this.displayNumber = this.isSelected ? this.likeNumber + 1 : this.likeNumber;
-        console.log('isSelected = ', this.isSelected);
+        this.likesCount += this.isSelected ?  1 : -1;
     }
 
 }

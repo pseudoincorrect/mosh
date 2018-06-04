@@ -8,4 +8,9 @@ import { LikeButtonComponent } from '../app/like-button/like-button.component';
 })
 export class AppComponent {
     title = 'app';
+    likes = {
+        body: '...',
+        isSelected: true,
+        likesCount: 666
+    };
 }
