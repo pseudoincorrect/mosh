@@ -1,0 +1,19 @@
+<div class="card bg-light mb-3" style="max-width: 18rem;">
+    <div
+        class="card-header"
+        (click)="selected=!selected">
+        {{title}}
+        <span *ngIf="selected; then isSelected else isNotSelected"> </span>
+        <ng-template #isSelected>
+            <span class="material-icons float-right"> keyboard_arrow_up </span>
+        </ng-template>
+        <ng-template #isNotSelected>
+            <span class="material-icons float-right"> keyboard_arrow_down </span>
+        </ng-template>
+    </div>
+    <div *ngIf="selected">
+        <div class="card-body">
+            <p class="card-text"><ng-content></ng-content></p>
+        </div>
+    </div>
+</div>

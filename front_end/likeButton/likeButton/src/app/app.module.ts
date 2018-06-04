@@ -6,11 +6,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LikeButtonComponent } from './like-button/like-button.component';
 import { LikesCountService } from './likes-count.service';
+import { ZippyComponent } from './zippy/zippy.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        LikeButtonComponent
+        LikeButtonComponent,
+        ZippyComponent
     ],
     imports: [
         BrowserModule,
