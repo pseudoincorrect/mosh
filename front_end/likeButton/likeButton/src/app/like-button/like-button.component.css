@@ -1,0 +1,13 @@
+table {
+    border-spacing: 10px;
+    border-collapse: separate;
+}
+
+.material-icons {
+    font-size: 30px;
+    color: grey;
+}
+
+.material-icons.selected {
+    color: dodgerblue;
+}
