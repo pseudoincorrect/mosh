@@ -1,12 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { TempDrivFormComponent } from './temp-driv-form/temp-driv-form.component';
-import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
-import { SignupFormComponent } from './signup-form/signup-form.component';
 import { PostComponent } from './post/post.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { PostService } from './services/post.service';
+import { SignupFormComponent } from './signup-form/signup-form.component';
+import { TempDrivFormComponent } from './temp-driv-form/temp-driv-form.component';
+
 
 @NgModule({
   declarations: [
@@ -19,9 +21,12 @@ import { PostComponent } from './post/post.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [
+    PostService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
