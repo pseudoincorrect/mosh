@@ -1,0 +1,45 @@
+<form [formGroup]="form">
+  <div class="form-group">
+    <label for="oldPass">Email address</label>
+    <input 
+      formControlName="oldPass"
+      id="oldPass"
+      type="password" 
+      class="form-control"
+      placeholder="Enter old password">
+    <div *ngIf="oldPass.touched && oldPass.invalid" class="alert alert-danger"> 
+      <div *ngIf="oldPass.errors.required">password required </div>
+      <div *ngIf="oldPass.errors.doesNotMatchOld">Password incorrect</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="newPass">Email address</label>
+    <input 
+      formControlName="newPass"
+      id="newPass"
+      type="password" 
+      class="form-control"
+      placeholder="Enter new password">
+    <div *ngIf="newPass.touched && newPass.invalid" class="alert alert-danger"> 
+      <div *ngIf="newPass.errors.required">password required </div>
+      <div *ngIf="newPass.errors.minlength">minimum password lenght 3 chararacters </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="passMatch">Email address</label>
+    <input 
+      formControlName="passMatch"
+      id="passMatch"
+      type="password" 
+      class="form-control"
+      placeholder="Enter new password">
+    <div *ngIf="passMatch.touched && passMatch.invalid" class="alert alert-danger"> 
+      <div *ngIf="passMatch.errors.required">password required </div>
+    </div>
+    <div *ngIf="passMatch.valid && form.invalid && form.errors?.doesNotMatchNew" class="alert alert-danger"> 
+    <!-- <div *ngIf="form.invalid" class="alert alert-danger">  -->
+      password should match 
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
