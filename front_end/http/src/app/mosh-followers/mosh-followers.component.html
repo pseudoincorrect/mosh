@@ -1,14 +1,12 @@
-<ul class="list-group">
-  <li 
-    class="list-group-item"
-    *ngFor="let follower of followers">
-    <!-- <img src={follower.avatar_url}} class="img-circle" alt="Cinque Terre" width="304" height="236">  -->
-      <img src={{follower.avatar_url}} class="rounded-circle" width="200" height="200">
-      <span>
-        <ul>
-          <li> {{ follower.login }}</li>
-          <li> {{ follower.html_url }}</li>
-        </ul>
-      </span>
-  </li>
-</ul>
+
+<div class="media" *ngFor="let follower of followers" style="padding:7px;" >
+  <div class="media-left">
+    <a href="#">
+      <img class="avatar media-object" src={{follower.avatar_url}} >
+    </a>
+  </div>
+  <div class="media-body" style="padding-left:12px;">
+    <h4 class="media-heading"> {{ follower.login }} </h4>
+    <a href="follower.html_url"> {{ follower.html_url }} </a>
+  </div>
+</div>

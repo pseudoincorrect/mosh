@@ -18,7 +18,6 @@ export class MoshFollowersComponent implements OnInit {
   ngOnInit() {
     this.service.getHttp()
       .subscribe(followers => {
-        console.log( followers );
         this.followers = followers;
       })
   }
