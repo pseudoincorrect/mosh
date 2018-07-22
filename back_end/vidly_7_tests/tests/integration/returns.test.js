@@ -1,8 +1,8 @@
 const moment = require('moment');
-const {Rental} = require('../../models/rental');
-const {Movie} = require('../../models/movie');
 const mongoose = require('mongoose');
 const request = require('supertest');
+const {Rental} = require('../../models/rental');
+const {Movie} = require('../../models/movie');
 const {User} = require('../../models/user');
 
 describe('returns', () => {
